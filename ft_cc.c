@@ -79,7 +79,7 @@ void			ft_c_up(t_prntf flags, va_list arg, char *buf)
 	else
 	{
 		if (t <= 255)
-			ft_if_printable_uni(buf, t, c, flags);
+			ft_printable_char(buf, t, c, flags);
 		else
 			g_i = -1;
 	}
