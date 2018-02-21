@@ -18,6 +18,8 @@
 # include "./libft/libft.h"
 # include <inttypes.h>
 # include <wchar.h>
+# define CYAN "\x1b[0;36m"
+# define RESET "\x1b[0m"
 
 int g_i;
 
@@ -92,4 +94,5 @@ int					ft_not_flag(char c);
 int					ft_add_buf(int a, int j, char **buf, const char **format);
 int					ft_positon(int *a, int *j, const char **format);
 int					ft_return(char *buf);
+void				ft_b(t_prntf flags);
 #endif

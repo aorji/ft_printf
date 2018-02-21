@@ -24,7 +24,8 @@ int			ft_char_coincide(char c)
 {
 	if (c != 's' && c != 'S' && c != 'c' && c != 'C' && c != 'x' && c != 'X'
 		&& c != 'p' && c != 'd' && c != 'i' && c != 'o' && c != 'O' && c != 'u'
-		&& c != 'U' && c != '%' && c != 'D' && c != '@' && c != 'n')
+		&& c != 'U' && c != '%' && c != 'D' && c != '@' && c != 'n'
+		&& c != 'b')
 		return (1);
 	return (0);
 }

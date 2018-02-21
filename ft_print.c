@@ -30,6 +30,7 @@ void	ft_print(va_list arg, char *buf, t_prntf flags, char kod)
 	kod == 'U' ? ft_u_up(flags, arg) : 0;
 	kod == 'n' ? ft_n(arg) : 0;
 	kod == '@' ? ft_a() : 0;
+	kod == 'b' ? ft_b(flags) : 0;
 }
 
 int		ft_sc(va_list arg, char *buf, t_prntf flags, char kod)

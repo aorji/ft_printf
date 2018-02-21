@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_check_printable(wchar_t *t, int len)
+int		ft_check_printable(wchar_t *t, int len)
 {
 	int i;
 
@@ -24,4 +24,12 @@ int	ft_check_printable(wchar_t *t, int len)
 		len--;
 	}
 	return (1);
+}
+
+void	ft_b(t_prntf flags)
+{
+	if (flags.width)
+		write(1, CYAN, (int)ft_strlen(CYAN));
+	else
+		write(1, RESET, (int)ft_strlen(RESET));
 }
