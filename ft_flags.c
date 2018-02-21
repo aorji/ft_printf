@@ -39,25 +39,27 @@ t_prntf			ft_fillflags(char *flags)
 {
 	t_prntf	memb;
 	int		zero;
+	int		i;
 
 	memb = (t_prntf){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	zero = 0;
-	while (*flags)
+	i = 0;
+	while (flags[i])
 	{
-		memb = ft_fill(*flags, memb, zero);
-		if (*flags == 48 && zero == 0)
+		memb = ft_fill(flags[i], memb, zero);
+		if (flags[i] == 48 && zero == 0)
 		{
 			memb.zero = 1;
 			zero = 1;
 		}
-		if (*flags >= 48 && *flags <= 57 && zero != 2)
+		if (flags[i] >= 48 && flags[i] <= 57 && zero != 2)
 		{
-			memb.width = memb.width * 10 + (*flags) - 48;
+			memb.width = memb.width * 10 + flags[i] - 48;
 			zero = 1;
 		}
-		if (*flags == '.' && (zero = 2))
+		if (flags[i] == '.' && (zero = 2))
 			memb.point = 1;
-		flags++;
+		i++;
 	}
 	return (memb);
 }

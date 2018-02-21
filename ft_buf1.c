@@ -28,7 +28,10 @@ int	ft_buf(const char **format, char **buf)
 		(*format)++;
 	}
 	if (**format == '%' && ft_strlen(*format) == 1)
+	{
+		ft_strdel(buf);
 		return (0);
+	}
 	if (!**format)
 		return (ft_return(*buf));
 	if (**format == '%')
@@ -41,13 +44,17 @@ int	ft_add_buf(int a, int j, char **buf, const char **format)
 	t_prntf	flags;
 	char	*tmp;
 	int		u;
+	char	*sub;
 
 	u = 1;
-	if ((ft_check_midle(ft_strsub(*format, 0, j)) >= 0))
+	sub = ft_strsub(*format, 0, j);
+	if ((ft_check_midle(sub) >= 0))
 	{
 		while (j && !(u = 0))
 		{
-			a = ft_check_midle(ft_strsub(*format, 0, j));
+			tmp = ft_strsub(*format, 0, j);
+			a = ft_check_midle(tmp);
+			ft_strdel(&tmp);
 			if (a >= 0)
 			{
 				tmp = ft_strsub(*format, 0, a + 1);
@@ -62,6 +69,7 @@ int	ft_add_buf(int a, int j, char **buf, const char **format)
 			j--;
 		}
 	}
+	ft_strdel(&sub);
 	return (u);
 }
 

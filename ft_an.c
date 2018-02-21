@@ -14,7 +14,7 @@
 
 void	ft_a(void)
 {
-	write(1, "~~~~~~~\n", 8);
+	write(1, "\n~~~~~~~\n", 9);
 	ft_putnbr(g_i);
 	write(1, " bytes was printed.\n~~~~~~~\n", 28);
 }

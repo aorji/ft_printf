@@ -46,7 +46,10 @@ void		ft_u(t_prntf flags, va_list arg)
 	if (minus > 0 && flags.zero && (!flags.precision || ft_atoi(s) < 0))
 		c = '0';
 	if (!flags.precision && flags.point && ft_atoi(s) == 0)
+	{
+		ft_strdel(&s);
 		return (ft_zero_precision(minus, c));
+	}
 	ft_print_spaces(minus, (int)ft_strlen(s), s, c);
 	g_i += ft_strlen(s);
 	ft_strdel(&s);
@@ -65,7 +68,10 @@ void		ft_u_up(t_prntf flags, va_list arg)
 	if (minus > 0 && flags.zero && (!flags.precision || ft_atoi(s) < 0))
 		c = '0';
 	if (!flags.precision && flags.point && ft_atoi(s) == 0)
+	{
+		ft_strdel(&s);
 		return (ft_zero_precision(minus, c));
+	}
 	ft_print_spaces(minus, (int)ft_strlen(s), s, c);
 	g_i += ft_strlen(s);
 	ft_strdel(&s);

@@ -32,8 +32,12 @@ int			ft_char_coincide(char c)
 
 static int	ft_main_code(char **buf, va_list arg, const char **format, int j)
 {
-	ft_print(arg, *buf, ft_fillflags(ft_strsub(*format, 0, j)), (*format)[j]);
+	char	*flag_str;
+
+	flag_str = ft_strsub(*format, 0, j);
+	ft_print(arg, *buf, ft_fillflags(flag_str), (*format)[j]);
 	ft_strdel(buf);
+	ft_strdel(&flag_str);
 	if (g_i == -1)
 		return (-1);
 	*format += j + 1;
