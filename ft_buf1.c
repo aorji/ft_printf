@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_buf(const char **format, char **buf)
+int			ft_buf(const char **format, char **buf)
 {
 	char	*tmp;
 	char	*sub;
@@ -33,22 +33,47 @@ int	ft_buf(const char **format, char **buf)
 		return (0);
 	}
 	if (!**format)
-		return (ft_return(*buf));
+		return (ft_return(buf));
 	if (**format == '%')
 		(*format)++;
 	return (-1);
 }
 
-int	ft_add_buf(int a, int j, char **buf, const char **format)
+static int	ft_if(char **buf, const char **format, int a)
 {
+	char	*tmp;
+	char	*tmp1;
+	char	*str;
 	t_prntf	flags;
+	int		i;
+
+	i = 0;
+	tmp = ft_strsub(*format, 0, a + 1);
+	flags = ft_fillflags(tmp);
+	while (!ft_not_flag(tmp[i]))
+		i++;
+	str = ft_strsub(tmp, i, ((int)ft_strlen(tmp) - i));
+	ft_strdel(&tmp);
+	tmp = ft_full_input(flags, str);
+	ft_strdel(&str);
+	tmp1 = *buf;
+	*buf = ft_strjoin(*buf, tmp);
+	ft_strdel(&tmp1);
+	ft_strdel(&tmp);
+	*format += a + 1;
+	if (!**format)
+		return (-1);
+	return (1);
+}
+
+int			ft_add_buf(int a, int j, char **buf, const char **format)
+{
 	char	*tmp;
 	int		u;
 	char	*sub;
 
-	u = 1;
 	sub = ft_strsub(*format, 0, j);
-	if ((ft_check_midle(sub) >= 0))
+	if ((u = 1) && (ft_check_midle(sub) >= 0))
 	{
 		while (j && !(u = 0))
 		{
@@ -57,14 +82,11 @@ int	ft_add_buf(int a, int j, char **buf, const char **format)
 			ft_strdel(&tmp);
 			if (a >= 0)
 			{
-				tmp = ft_strsub(*format, 0, a + 1);
-				flags = ft_fillflags(tmp);
-				while (!ft_not_flag(*tmp))
-					tmp++;
-				*buf = ft_strjoin(*buf, ft_full_input(flags, tmp));
-				*format += a + 1;
-				if (!**format)
-					return (-1);
+				if ((a = ft_if(buf, format, a)) == -1)
+				{
+					ft_strdel(&sub);
+					return (a);
+				}
 			}
 			j--;
 		}
@@ -73,7 +95,7 @@ int	ft_add_buf(int a, int j, char **buf, const char **format)
 	return (u);
 }
 
-int	ft_positon(int *a, int *j, const char **format)
+int			ft_positon(int *a, int *j, const char **format)
 {
 	*j = ft_proc_position(*format);
 	*a = ft_pos_kod(*format);
@@ -85,7 +107,7 @@ int	ft_positon(int *a, int *j, const char **format)
 		return (-1);
 }
 
-int	ft_not_flag(char c)
+int			ft_not_flag(char c)
 {
 	if (c != 'h' && c != 'l' && c != 'j' && c != 'z' && c != '#' && c != '0'
 		&& c != '-' && c != '+' && c != ' ' && c != '%' && c != '.'

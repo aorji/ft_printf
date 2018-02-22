@@ -67,6 +67,7 @@ void		ft_o(t_prntf flags, va_list arg)
 			write(1, "0", 1);
 			g_i++;
 		}
+		ft_strdel(&s);
 		return ;
 	}
 	ft_print_spaces(minus, (int)ft_strlen(s), s, c);
@@ -95,6 +96,7 @@ void		ft_o_up(t_prntf flags, va_list arg)
 			write(1, "0", 1);
 			g_i++;
 		}
+		ft_strdel(&s);
 		return ;
 	}
 	ft_print_spaces(minus, (int)ft_strlen(s), s, c);

@@ -12,11 +12,11 @@
 
 #include "ft_printf.h"
 
-int			ft_return(char *buf)
+int			ft_return(char **buf)
 {
-	g_i += ft_strlen(buf);
-	write(1, buf, (int)ft_strlen(buf));
-	ft_strdel(&buf);
+	g_i += ft_strlen(*buf);
+	write(1, *buf, (int)ft_strlen(*buf));
+	ft_strdel(buf);
 	return (g_i);
 }
 
@@ -39,9 +39,18 @@ static int	ft_main_code(char **buf, va_list arg, const char **format, int j)
 	ft_strdel(buf);
 	ft_strdel(&flag_str);
 	if (g_i == -1)
+	{
+		ft_strdel(buf);
 		return (-1);
+	}
 	*format += j + 1;
 	return (1);
+}
+
+static int	ft_del(char **buf)
+{
+	ft_strdel(buf);
+	return (g_i);
 }
 
 int			ft_printf(const char *format, ...)
@@ -61,9 +70,9 @@ int			ft_printf(const char *format, ...)
 		if ((a = ft_buf(&format, &buf)) >= 0)
 			return (a);
 		if ((a = ft_positon(&a, &j, &format)) != -1)
-			return (g_i);
+			return (ft_del(&buf));
 		if ((u = ft_add_buf(a, j, &buf, &format)) <= 0)
-			return (ft_return(buf));
+			return (ft_return(&buf));
 		(*format == '%' && u == 0) ? (format++) : 0;
 		while (ft_char_coincide(format[j]))
 			j++;

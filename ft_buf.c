@@ -27,12 +27,17 @@ int		ft_pos_kod(const char *s)
 
 char	*ft_print_full(t_prntf flags, char *c, char *s)
 {
-	int	minus;
+	int		minus;
+	char	*str;
+	char	*tmp;
 
 	minus = ft_check_minus(flags);
+	str = ft_strsub(s, 0, (int)ft_strlen(s));
 	while (minus - 1 > 0)
 	{
-		s = ft_strjoin(c, s);
+		tmp = str;
+		str = ft_strjoin(c, str);
+		ft_strdel(&tmp);
 		minus--;
 	}
 	if (minus < 0)
@@ -40,11 +45,13 @@ char	*ft_print_full(t_prntf flags, char *c, char *s)
 		minus = -minus;
 		while (minus - 1 > 0)
 		{
-			s = ft_strjoin(s, c);
+			tmp = str;
+			str = ft_strjoin(str, c);
+			ft_strdel(&tmp);
 			minus--;
 		}
 	}
-	return (s);
+	return (str);
 }
 
 char	*ft_full_input(t_prntf flags, char *s)

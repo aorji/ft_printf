@@ -65,7 +65,10 @@ void		ft_di(t_prntf flags, va_list arg)
 	if (minus > 0 && flags.zero && (!flags.precision || ft_atoi(s) < 0))
 		c = '0';
 	if (!flags.precision && flags.point && ft_atoi(s) == 0)
+	{
+		ft_strdel(&s);
 		return (ft_zero_precision(minus, c));
+	}
 	if ((flags.space || flags.pluse) && ft_atoi(s) >= 0)
 		s = ft_pluse_space(s, flags);
 	ft_print_spaces(minus, (int)ft_strlen(s), s, c);
@@ -86,7 +89,10 @@ void		ft_d_up(t_prntf flags, va_list arg)
 	if (minus > 0 && flags.zero && (!flags.precision || ft_atoi(s) < 0))
 		c = '0';
 	if (!flags.precision && flags.point && ft_atoi(s) == 0)
+	{
+		ft_strdel(&s);
 		return (ft_zero_precision(minus, c));
+	}
 	if ((flags.space || flags.pluse) && ft_atoi(s) >= 0)
 		s = ft_pluse_space(s, flags);
 	ft_print_spaces(minus, (int)ft_strlen(s), s, c);

@@ -47,13 +47,16 @@ static	void	ft_check_cur_max(char *buf, t_prntf flags, wchar_t *t, char c)
 
 static	void	ft_print_s(t_prntf flags, char c, int len, char *s)
 {
-	int minus;
+	int		minus;
+	char	*tmp;
 
+	tmp = ft_strsub(s, 0, len);
 	minus = ft_check_minus(flags);
 	ft_print_width(minus, len, c);
-	write(1, ft_strsub(s, 0, len), len);
+	write(1, s, len);
 	g_i += len;
 	ft_print_spaces_srting(minus, len, c);
+	ft_strdel(&tmp);
 }
 
 void			ft_s(t_prntf flags, va_list arg, char *buf)
@@ -61,21 +64,22 @@ void			ft_s(t_prntf flags, va_list arg, char *buf)
 	void	*s;
 	char	c;
 	int		minus;
+	int		f;
 
 	c = ' ';
+	f = 0;
 	minus = ft_check_minus(flags);
-	if (ft_check_minus(flags) > 0 && flags.zero)
-		c = '0';
+	(minus > 0 && flags.zero) ? c = '0' : 0;
 	if (!flags.precision && flags.point)
 		return (ft_zero_precision_s(minus, c, buf));
-	if (!(s = va_arg(arg, char *)))
+	s = va_arg(arg, wchar_t *);
+	if (!s && (f = 1))
 		s = "(null)";
-	if (flags.l)
+	if (flags.l && !f)
 		ft_check_cur_max(buf, flags, s, c);
 	else
 	{
-		minus = (int)ft_strlen(buf);
-		write(1, buf, minus);
+		write(1, buf, (minus = (int)ft_strlen(buf)));
 		g_i += minus;
 		if (flags.point && flags.precision < (int)ft_strlen(s))
 			ft_print_s(flags, c, flags.precision, s);
