@@ -33,3 +33,31 @@ void	ft_b(t_prntf flags)
 	else
 		write(1, RESET, (int)ft_strlen(RESET));
 }
+
+void	ft_ul_case(void **str, t_prntf flags)
+{
+	int		i;
+	char	*s;
+
+	i = -1;
+	s = ft_strnew(ft_strlen((char *)str));
+	s = ft_strcpy(s, *str);
+	if (flags.up && !flags.down)
+	{
+		while (s[++i])
+		{
+			if (s[i] >= 97 && s[i] <= 122)
+				s[i] = s[i] - 32;
+		}
+	}
+	if (flags.down && !flags.up)
+	{
+		while (s[++i])
+		{
+			if (s[i] >= 65 && s[i] <= 90)
+				s[i] = s[i] + 32;
+		}
+	}
+	*str = (void *)s;
+	ft_strdel(&s);
+}

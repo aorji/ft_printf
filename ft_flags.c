@@ -30,6 +30,10 @@ static	t_prntf	ft_fill(char c, t_prntf memb, int zero)
 		memb.sharp = 1;
 	if (c == '-')
 		memb.minus = 1;
+	if (c == '_')
+		memb.down = 1;
+	if (c == '^')
+		memb.up = 1;
 	if (c >= 48 && c <= 57 && zero == 2)
 		memb.precision = memb.precision * 10 + c - 48;
 	return (memb);
@@ -41,7 +45,7 @@ t_prntf			ft_fillflags(char *flags)
 	int		zero;
 	int		i;
 
-	memb = (t_prntf){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+	memb = (t_prntf){0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	zero = 0;
 	i = 0;
 	while (flags[i])

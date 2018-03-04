@@ -39,6 +39,8 @@ typedef	struct		s_prntf
 	int				zero;
 	int				precision;
 	int				point;
+	int				up;
+	int				down;
 }					t_prntf;
 
 int					ft_printf(const char *format, ...);
@@ -95,4 +97,5 @@ int					ft_add_buf(int a, int j, char **buf, const char **format);
 int					ft_positon(int *a, int *j, const char **format);
 int					ft_return(char **buf);
 void				ft_b(t_prntf flags);
+void				ft_ul_case(void **string, t_prntf flags);
 #endif

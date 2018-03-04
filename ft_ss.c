@@ -69,15 +69,15 @@ void			ft_s(t_prntf flags, va_list arg, char *buf)
 	c = ' ';
 	f = 0;
 	s = va_arg(arg, wchar_t *);
+	(flags.up || flags.down) ? ft_ul_case(&s, flags) : 0;
 	minus = ft_check_minus(flags);
 	(minus > 0 && flags.zero) ? c = '0' : 0;
 	if (!flags.precision && flags.point)
 		return (ft_zero_precision_s(minus, c, buf));
 	if (!s && (f = 1))
 		s = "(null)";
-	if (flags.l && !f)
-		ft_check_cur_max(buf, flags, s, c);
-	else
+	(flags.l && !f) ? ft_check_cur_max(buf, flags, s, c) : 0;
+	if (!(flags.l && !f))
 	{
 		write(1, buf, (minus = (int)ft_strlen(buf)));
 		g_i += minus;
@@ -94,8 +94,8 @@ void			ft_s_up(t_prntf flags, va_list arg, char *buf)
 	int		minus;
 	char	c;
 
-	c = ' ';
 	t_s = va_arg(arg, wchar_t *);
+	c = ' ';
 	minus = ft_check_minus(flags);
 	if (minus > 0 && flags.zero)
 		c = '0';
