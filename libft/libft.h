@@ -6,7 +6,7 @@
 /*   By: aorji <aorji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 15:56:54 by aorji             #+#    #+#             */
-/*   Updated: 2017/11/15 19:05:24 by aorji            ###   ########.fr       */
+/*   Updated: 2019/07/19 16:41:37 by aorji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,7 @@ int					ft_digitsize(int n);
 int					ft_count_words(char const *s, char c);
 int					ft_min(int a, int b);
 int					ft_max(int a, int b);
+
+void				ft_listdisp(t_list *list);
 
 #endif

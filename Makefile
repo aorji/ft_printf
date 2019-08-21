@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aorji <marvin@42.fr>                       +#+  +:+       +#+         #
+#    By: aorji <aorji@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/25 18:11:26 by aorji             #+#    #+#              #
-#    Updated: 2018/01/25 18:11:28 by aorji            ###   ########.fr        #
+#    Updated: 2019/07/18 14:44:11 by aorji            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ clean:
 	@ cd ./libft && make clean
 
 fclean: clean
+	@ cd ./libft && make fclean
 	@ /bin/rm -f $(NAME)
 	@ /bin/rm -f $(LIB)
 	@ /bin/rm -f libft/$(LIB)
