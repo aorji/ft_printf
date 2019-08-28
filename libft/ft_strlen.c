@@ -6,7 +6,7 @@
 /*   By: aorji <aorji@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 19:11:59 by aorji             #+#    #+#             */
-/*   Updated: 2019/08/14 15:51:34 by aorji            ###   ########.fr       */
+/*   Updated: 2019/08/28 17:10:27 by aorji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t len;
+	size_t	len;
 
 	len = 0;
 	if (!s)
-		return 0;
+		return (0);
 	while (s[len])
 		len++;
 	return (len);
